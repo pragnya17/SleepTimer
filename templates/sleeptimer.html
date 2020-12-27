@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="https://cdn.pubnub.com/pubnub-3.7.13.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+    </head>
+        
+    <div class="row">
+        <div class="w-70 mx-auto">
+            <h1 >
+                SleepTimer
+            </h1>
+            <p>
+                <form action="/close" method="post">
+                    Time: <input type="number" id="hours" name="hours" min="0" max="24"> hours
+                    <input type="number" id="minutes" name="minutes" min="0" max="59"> minutes
+                    <input type="submit" value="OK" onclick="confirmation()"/><br>
+
+                    <input type="checkbox" id="netflix1" value="Netflix" name="check"/>
+                    <label for="netflix1"> Netflix</label><br>
+
+                    <input type="checkbox" id="spotify2" value="Spotify" name="check"/>
+                    <label for="spotify2"> Spotify</label><br>
+
+                    <input type="checkbox" id="hulu3" value="Hulu" name="check"/>
+                    <label for="hulu3"> Hulu</label><br>
+                </form>
+            </p>
+            <div id="displayTime"> </div>
+        </div>
+    </div>
+    <script type = text/javascript>
+        function confirmation() {
+            var hours = document.getElementById("hours").value;
+            var minutes = document.getElementById("minutes").value; 
+            var appsToClose = ""
+            if (document.getElementById("netflix1").checked){
+                appsToClose += document.getElementById("netflix1").value + "<br>"
+            }
+            if (document.getElementById("spotify2").checked){
+                appsToClose += document.getElementById("spotify2").value + "<br>"
+            }
+            if (document.getElementById("hulu3").checked){
+                appsToClose += document.getElementById("hulu3").value + "<br>"
+            }
+            document.getElementById("displayTime").innerHTML = "SleepTimer will close the following apps in " + hours + " hour(s) and " + minutes + " minutes:<br>" + appsToClose;
+        }
+    </script>
+      
+</html>
