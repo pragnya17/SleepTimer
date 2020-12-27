@@ -17,7 +17,7 @@ def close_task(app):
 
 @app.route('/')
 def index():
-    return render_template('sleeptimer.html')
+    return render_template('index.html')
 
 @app.route('/close', methods=['POST'])
 def close():
